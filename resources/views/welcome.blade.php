@@ -1,26 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>El Mundo de los Carros — Tipos, Marcas y Modelos</title>
-<link rel="stylesheet" href="{{ asset('styles.css') }}">
-</head>
-<body>
+@extends('layout.app')
 
-  <header class="nav">
-    <div class="nav-inner">
-      <div class="logo">🚗 <span>AutoMundo</span></div>
-      <nav class="links">
-        <a href="#tipos">Tipos</a>
-        <a href="#marcas">Marcas</a>
-        <a href="#modelos">Modelos</a>
-        <a href="#comparativa">Comparativa</a>
-        <a href="/cars">Catálogo</a>
-      </nav>
-    </div>
-  </header>
+@section('title', 'AutoMundo | Tipos, marcas y modelos')
 
+@section('content')
   <section class="hero">
     <div class="hero-content">
       <span class="eyebrow">Guía sobre el mundo automotor</span>
@@ -351,10 +333,5 @@
     </div>
   </section>
 
-  <footer>
-    <div class="logo">🚗 <span>AutoMundo</span></div>
-    <p>Página informativa creada con HTML y CSS en un solo archivo · Contenido con fines educativos.</p>
-  </footer>
-
-</body>
-</html>
+  
+@endsection
