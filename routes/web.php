@@ -4,14 +4,12 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class); // landing de AutoMundo
 
-Route::get('/mi-path', function () {
-    return ('Hola Mundo');
+Route::prefix('cars')->controller(CarController::class)->group(function () {
+    Route::get('/', 'index'); // listado de carros
+    Route::get('/create', 'create'); // formulario para registrar un carro
+    Route::get('/{idCar}', 'show'); // detalle de un carro
 });
 
-Route::get('/cars', [CarController::class, 'index']);
-
-Route::get('/cars/create', [CarController::class, 'create']);
-
-Route::get('/cars/{idCar}', [CarController::class, 'show']);
+// todas las vistas apuntan al mismo css ubicado en public/styles.css

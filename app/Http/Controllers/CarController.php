@@ -6,16 +6,18 @@ class CarController extends Controller
 {
     public function index()
     {
-        return "Listado de carros";
+        return view('car.index');
     }
 
     public function create()
     {
-        return "Formulario para registrar un carro";
+        // id // nombre // marca // año // precio // descripción // tipo de carrocería
+        return view('car.create');
     }
 
     public function show($idCar)
     {
-        return "Detalle del carro: $idCar";
+        // id // nombre // marca // año // precio // descripción // tipo de carrocería
+        return view('car.show');
     }
 }
