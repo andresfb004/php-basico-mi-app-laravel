@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Car;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -23,5 +24,8 @@ class DatabaseSeeder extends Seeder
 
         // Tipos de carrocería
         Category::factory(8)->create();
+
+        // Carros de prueba
+        Car::factory(10)->create();
     }
 }
