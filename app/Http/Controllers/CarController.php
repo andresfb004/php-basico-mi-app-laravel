@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
+
 class CarController extends Controller
 {
     public function index()
     {
-        return view('car.index');
+        $listaDeCarros = Car::all();
+
+        return view('car.index', compact('listaDeCarros'));
     }
 
     public function create()

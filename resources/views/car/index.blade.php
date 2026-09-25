@@ -14,55 +14,33 @@
   <section class="page-body">
     <div class="container">
       <div class="toolbar">
-        <span class="count">3 carros registrados</span>
+        <span class="count">{{ $listaDeCarros->count() }} carros registrados</span>
         <a href="/cars/create" class="btn btn-primary">Registrar carro +</a>
       </div>
 
+      @php
+        $colores = ['red', 'blue', 'gray', 'gold'];
+      @endphp
+
       <div class="model-grid">
-        <div class="model-card">
-          <div class="model-banner red">🚘</div>
-          <div class="model-body">
-            <span class="brand-label">Toyota</span>
-            <h3>Corolla</h3>
-            <div class="model-meta"><span class="pill">Sedán</span><span class="pill">2024</span></div>
-            <p>El auto más vendido de la historia a nivel mundial, símbolo de confiabilidad.</p>
-            <div class="model-footer">
-              <span class="price">$ 120.000.000</span>
-              <a href="/cars/1" class="link-more">Ver detalle →</a>
+        @forelse ($listaDeCarros as $carro)
+          <div class="model-card">
+            <div class="model-banner {{ $colores[$loop->index % 4] }}">🚗</div>
+            <div class="model-body">
+              <span class="brand-label">{{ $carro->brand }}</span>
+              <h3>{{ $carro->name }}</h3>
+              <div class="model-meta"><span class="pill">{{ $carro->year }}</span></div>
+              <p>{{ $carro->description }}</p>
+              <div class="model-footer">
+                <span class="price">$ {{ number_format($carro->price, 0, ',', '.') }}</span>
+                <a href="/cars/{{ $carro->id }}" class="link-more">Ver detalle →</a>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="model-card">
-          <div class="model-banner blue">🏎️</div>
-          <div class="model-body">
-            <span class="brand-label">Ford</span>
-            <h3>Mustang</h3>
-            <div class="model-meta"><span class="pill">Deportivo</span><span class="pill">2023</span></div>
-            <p>Ícono estadounidense desde 1964, referente de los "pony cars".</p>
-            <div class="model-footer">
-              <span class="price">$ 310.000.000</span>
-              <a href="/cars/2" class="link-more">Ver detalle →</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="model-card">
-          <div class="model-banner gray">⚡</div>
-          <div class="model-body">
-            <span class="brand-label">Tesla</span>
-            <h3>Model 3</h3>
-            <div class="model-meta"><span class="pill">Eléctrico</span><span class="pill">2024</span></div>
-            <p>Referente en autonomía, tecnología a bordo y conducción asistida.</p>
-            <div class="model-footer">
-              <span class="price">$ 240.000.000</span>
-              <a href="/cars/3" class="link-more">Ver detalle →</a>
-            </div>
-          </div>
-        </div>
+        @empty
+          <div class="empty">Todavía no hay carros registrados.</div>
+        @endforelse
       </div>
     </div>
   </section>
-
-  
 @endsection
