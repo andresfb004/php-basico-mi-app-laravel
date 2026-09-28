@@ -1,34 +1,40 @@
 @extends('layout.app')
 
-@section('title', 'Detalle del carro | AutoMundo')
+@section('title', $car->brand . ' ' . $car->name . ' | AutoMundo')
 
 @section('content')
+  @php
+    $colores = ['red', 'blue', 'gray', 'gold'];
+  @endphp
+
   <section class="page-body">
     <div class="container">
       <div class="detail">
-        <div class="detail-visual model-banner red">🚘</div>
+        <div class="detail-visual model-banner {{ $colores[$car->id % 4] }}">{{ $car->category?->icon() ?? '🚗' }}</div>
 
         <div class="detail-info">
-          <span class="tag" style="color: var(--accent); font-weight:700; text-transform:uppercase; font-size:0.8rem;">Sedán</span>
-          <h1>Toyota Corolla</h1>
-          <p>El auto más vendido de la historia a nivel mundial, símbolo de confiabilidad, bajo consumo y excelente valor de reventa.</p>
+          <span class="brand-label">{{ $car->category?->name ?? 'Sin tipo' }}</span>
+          <h1>{{ $car->brand }} {{ $car->name }}</h1>
+          <p>{{ $car->description }}</p>
 
-          <span class="price">$ 120.000.000</span>
+          <span class="price">$ {{ number_format($car->price, 0, ',', '.') }}</span>
 
           <div class="specs">
-            <div class="spec"><span>Marca</span><b>Toyota</b></div>
-            <div class="spec"><span>Año</span><b>2024</b></div>
-            <div class="spec"><span>Carrocería</span><b>Sedán</b></div>
-            <div class="spec"><span>Referencia</span><b>#1</b></div>
+            <div class="spec"><span>Marca</span><b>{{ $car->brand }}</b></div>
+            <div class="spec"><span>Año</span><b>{{ $car->year }}</b></div>
+            <div class="spec"><span>Carrocería</span><b>{{ $car->category?->name ?? 'Sin tipo' }}</b></div>
+            <div class="spec"><span>Referencia</span><b>#{{ $car->id }}</b></div>
           </div>
 
+          @if ($car->category)
+            <p><small>{{ $car->category->description }}</small></p>
+          @endif
+
           <div class="actions">
-            <a href="/cars" class="btn">← Volver al catálogo</a>
+            <a href="{{ route('cars.index') }}" class="btn">← Volver al catálogo</a>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  
 @endsection

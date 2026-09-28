@@ -17,6 +17,15 @@ class CarController extends Controller
         return view('car.index', compact('cars'));
     }
 
+    public function manage()
+    {
+        $cars = Car::with('category')
+            ->latest()
+            ->paginate(10);
+
+        return view('car.manage', compact('cars'));
+    }
+
     public function create()
     {
         $categories = Category::all();
@@ -29,7 +38,7 @@ class CarController extends Controller
         Car::create($request->validated());
 
         return redirect()
-            ->route('cars.index')
+            ->route('cars.manage')
             ->with('success', 'Carro registrado correctamente.');
     }
 
@@ -52,7 +61,7 @@ class CarController extends Controller
         $car->update($request->validated());
 
         return redirect()
-            ->route('cars.index')
+            ->route('cars.manage')
             ->with('success', 'Carro actualizado correctamente.');
     }
 
@@ -61,7 +70,7 @@ class CarController extends Controller
         $car->delete();
 
         return redirect()
-            ->route('cars.index')
+            ->route('cars.manage')
             ->with('success', 'Carro eliminado correctamente.');
     }
 }

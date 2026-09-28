@@ -10,7 +10,7 @@
       <a href="{{ url('/') }}#marcas">Marcas</a>
       <a href="{{ url('/') }}#modelos">Modelos</a>
       <a href="{{ url('/') }}#comparativa">Comparativa</a>
-      <a href="{{ url('/cars') }}">Catálogo →</a>
+      <a href="{{ route('cars.index') }}">Catálogo →</a>
     </nav>
   </div>
 </header>

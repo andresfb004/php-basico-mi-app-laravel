@@ -681,3 +681,18 @@ textarea.form-control{ min-height: 120px; resize: vertical; }
   .detail{ grid-template-columns: 1fr; }
   .form-grid{ grid-template-columns: 1fr; }
 }
+
+/* ---------- PAGINACIÓN ---------- */
+.pagination{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.pagination .count{ color: var(--text-dim); font-size: 0.88rem; }
+
+.btn.disabled{ opacity: 0.4; pointer-events: none; }
+
+td.dim{ color: var(--text-dim); }

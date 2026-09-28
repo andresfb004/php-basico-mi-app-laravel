@@ -14,8 +14,8 @@
   <section class="page-body">
     <div class="container">
       <div class="toolbar">
-        <span class="count">{{ $listaDeCarros->count() }} carros registrados</span>
-        <a href="/cars/create" class="btn btn-primary">Registrar carro +</a>
+        <span class="count">{{ $cars->total() }} carros en el catálogo</span>
+        <a href="{{ route('cars.manage') }}" class="btn">Gestionar catálogo</a>
       </div>
 
       @php
@@ -23,17 +23,20 @@
       @endphp
 
       <div class="model-grid">
-        @forelse ($listaDeCarros as $carro)
+        @forelse ($cars as $car)
           <div class="model-card">
-            <div class="model-banner {{ $colores[$loop->index % 4] }}">🚗</div>
+            <div class="model-banner {{ $colores[$car->id % 4] }}">{{ $car->category?->icon() ?? '🚗' }}</div>
             <div class="model-body">
-              <span class="brand-label">{{ $carro->brand }}</span>
-              <h3>{{ $carro->name }}</h3>
-              <div class="model-meta"><span class="pill">{{ $carro->year }}</span></div>
-              <p>{{ $carro->description }}</p>
+              <span class="brand-label">{{ $car->brand }}</span>
+              <h3>{{ $car->name }}</h3>
+              <div class="model-meta">
+                <span class="pill">{{ $car->category?->name ?? 'Sin tipo' }}</span>
+                <span class="pill">{{ $car->year }}</span>
+              </div>
+              <p>{{ $car->description }}</p>
               <div class="model-footer">
-                <span class="price">$ {{ number_format($carro->price, 0, ',', '.') }}</span>
-                <a href="/cars/{{ $carro->id }}" class="link-more">Ver detalle →</a>
+                <span class="price">$ {{ number_format($car->price, 0, ',', '.') }}</span>
+                <a href="{{ route('cars.show', $car) }}" class="link-more">Ver detalle →</a>
               </div>
             </div>
           </div>
@@ -41,6 +44,8 @@
           <div class="empty">Todavía no hay carros registrados.</div>
         @endforelse
       </div>
+
+      {{ $cars->links('car.partials.pagination') }}
     </div>
   </section>
 @endsection

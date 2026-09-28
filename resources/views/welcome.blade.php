@@ -9,6 +9,11 @@
       <h1>Todo sobre <em>carros</em>: tipos, marcas y modelos</h1>
       <p>Una guía visual y sencilla para conocer las carrocerías más comunes, las marcas más influyentes de la industria y algunos de los modelos que marcaron historia.</p>
 
+      <div class="actions" style="justify-content:center; margin-bottom: 36px;">
+        <a href="{{ route('cars.index') }}" class="btn btn-primary">Ver catálogo →</a>
+        <a href="#tipos" class="btn">Conocer los tipos</a>
+      </div>
+
       <div class="hero-stats">
         <div class="stat"><b>8</b><span>Tipos de carrocería</span></div>
         <div class="stat"><b>10</b><span>Marcas destacadas</span></div>

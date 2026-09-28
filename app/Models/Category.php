@@ -23,4 +23,19 @@ class Category extends Model
     {
         return $this->hasMany(Car::class);
     }
+
+    // Emoji que representa el tipo de carrocería en las vistas
+    public function icon(): string
+    {
+        return match ($this->name) {
+            'Sedán' => '🚘',
+            'SUV' => '🚙',
+            'Pickup' => '🛻',
+            'Deportivo' => '🏎️',
+            'Eléctrico' => '⚡',
+            'Convertible' => '🌤️',
+            'Minivan' => '🚐',
+            default => '🚗',
+        };
+    }
 }
