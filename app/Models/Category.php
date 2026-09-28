@@ -12,4 +12,15 @@ class Category extends Model
     protected $table = 'categories';
 
     protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'name',
+        'description',
+    ];
+
+    // Un tipo de carrocería tiene muchos carros
+    public function cars()
+    {
+        return $this->hasMany(Car::class);
+    }
 }
