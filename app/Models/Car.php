@@ -27,4 +27,10 @@ class Car extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    // Un carro puede estar en el carrito de varios usuarios
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
 }

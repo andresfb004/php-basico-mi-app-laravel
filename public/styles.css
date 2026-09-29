@@ -443,7 +443,8 @@ footer .logo{ justify-content:center; margin-bottom: 10px; }
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 720px){
-  nav.links{ display:none; }
+  nav.links{ gap: 0; }
+  nav.links a:not(:last-child){ display:none; }
   section{ padding: 60px 0; }
   .hero{ padding: 80px 20px 70px; }
 }
