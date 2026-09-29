@@ -15,7 +15,9 @@
     <div class="container">
       <div class="toolbar">
         <span class="count">{{ $cars->total() }} carros en el catálogo</span>
-        <a href="{{ route('cars.manage') }}" class="btn">Gestionar catálogo</a>
+        @auth
+          <a href="{{ route('cars.manage') }}" class="btn">Gestionar catálogo</a>
+        @endauth
       </div>
 
       @php

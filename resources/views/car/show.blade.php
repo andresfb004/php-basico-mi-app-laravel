@@ -32,6 +32,9 @@
 
           <div class="actions">
             <a href="{{ route('cars.index') }}" class="btn">← Volver al catálogo</a>
+            @auth
+              <a href="{{ route('cars.edit', $car) }}" class="btn btn-primary">Editar carro</a>
+            @endauth
           </div>
         </div>
       </div>

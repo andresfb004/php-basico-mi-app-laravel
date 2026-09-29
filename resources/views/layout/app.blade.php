@@ -11,6 +11,14 @@
 
   @include('layout.header')
 
+  @php
+    $zonaGestion = request()->routeIs('cars.manage', 'cars.create', 'cars.edit');
+  @endphp
+
+  @if ($zonaGestion && Auth::check())
+    @include('car.partials.admin-bar')
+  @endif
+
   <main>
     @yield('content')
   </main>

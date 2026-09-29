@@ -696,3 +696,119 @@ textarea.form-control{ min-height: 120px; resize: vertical; }
 .btn.disabled{ opacity: 0.4; pointer-events: none; }
 
 td.dim{ color: var(--text-dim); }
+
+/* =========================================================
+   AUTENTICACIÓN (Breeze con estilos AutoMundo)
+   ========================================================= */
+
+.auth-page{
+  min-height: calc(100vh - 220px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 60px 16px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,77,45,0.16), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(255,176,32,0.12), transparent 40%),
+    var(--bg);
+}
+
+.auth-card{
+  width: 100%;
+  max-width: 440px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 36px 32px;
+}
+
+.auth-card .auth-logo{ margin-bottom: 22px; }
+
+.auth-card .tag{
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.auth-card h1{ font-size: 1.7rem; margin: 6px 0 8px; }
+
+.auth-copy{ color: var(--text-dim); font-size: 0.92rem; margin-bottom: 24px; }
+
+.auth-card .form-group{ margin-bottom: 18px; }
+
+.auth-check{
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  color: var(--text-dim);
+  font-size: 0.88rem;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.auth-check input{ accent-color: var(--accent); }
+
+.auth-submit{ width: 100%; }
+
+.auth-links{
+  display:flex;
+  justify-content:space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  font-size: 0.85rem;
+}
+
+.auth-links a,
+.link-button{
+  color: var(--accent-2);
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.85rem;
+  padding: 0;
+}
+
+.auth-links a:hover,
+.link-button:hover{ text-decoration: underline; }
+
+/* ---------- NAV: sesión y panel admin ---------- */
+.nav-session{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+}
+
+.nav-user{ color: var(--text-dim); font-size: 0.85rem; }
+
+.admin-bar{
+  background: linear-gradient(90deg, rgba(255,77,45,0.14), rgba(255,176,32,0.08));
+  border-bottom: 1px solid var(--line);
+  font-size: 0.85rem;
+}
+
+.admin-bar-inner{
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.admin-bar-links{ display:flex; gap: 18px; flex-wrap: wrap; }
+
+.admin-bar-links a{ color: var(--text-dim); font-weight: 600; }
+
+.admin-bar-links a:hover,
+.admin-bar-links a.active{ color: var(--accent-2); }
+
+@media (max-width: 720px){
+  .nav-user{ display:none; }
+}

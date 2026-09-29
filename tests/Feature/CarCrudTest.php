@@ -4,12 +4,21 @@ namespace Tests\Feature;
 
 use App\Models\Car;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class CarCrudTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        // La gestión del catálogo requiere sesión iniciada
+        $this->actingAs(User::factory()->create());
+    }
 
     private function datosCarro(Category $category, array $cambios = []): array
     {
@@ -76,5 +85,23 @@ class CarCrudTest extends TestCase
         $this->delete(route('cars.destroy', $car))->assertRedirect(route('cars.manage'));
 
         $this->assertDatabaseMissing('cars', ['id' => $car->id]);
+    }
+
+    public function test_un_invitado_no_puede_gestionar_carros(): void
+    {
+        auth()->logout();
+
+        $category = Category::factory()->create();
+        $car = Car::factory()->create(['category_id' => $category->id]);
+
+        $this->get(route('cars.manage'))->assertRedirect(route('login'));
+        $this->get(route('cars.create'))->assertRedirect(route('login'));
+        $this->get(route('cars.edit', $car))->assertRedirect(route('login'));
+        $this->post(route('cars.store'), [])->assertRedirect(route('login'));
+        $this->delete(route('cars.destroy', $car))->assertRedirect(route('login'));
+
+        // El catálogo y el detalle siguen siendo públicos
+        $this->get(route('cars.index'))->assertOk();
+        $this->get(route('cars.show', $car))->assertOk();
     }
 }
